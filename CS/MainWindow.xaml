@@ -1,0 +1,31 @@
+﻿<Window x:Class="DXSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"  
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:local="clr-namespace:DXSample"
+        DataContext="{dxmvvm:ViewModelSource Type=local:CategoryAttributesViewModel}"
+        dx:ThemeManager.ThemeName="Office2013"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <dxprg:PropertyGridControl SelectedObject="{Binding Person}" ExpandCategoriesWhenSelectedObjectChanged="True" ShowProperties="WithPropertyDefinitions">
+            <dxprg:PropertyGridControl.PropertyDefinitions>
+                <dxprg:PropertyDefinition Path="FirstName"/>
+                <dxprg:PropertyDefinition Path="LastName"/>
+                <dxprg:PropertyDefinition Path="Address" Header="Contact">
+                    <dxprg:PropertyDefinition.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <dxprg:CellEditorPresenter Path="AddressLine1"/>
+                                <dxprg:CellEditorPresenter Path="AddressLine2"/>
+                                <dxprg:CellEditorPresenter Path="Phone" PathMode="Absolute"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxprg:PropertyDefinition.ContentTemplate>
+                </dxprg:PropertyDefinition>
+            </dxprg:PropertyGridControl.PropertyDefinitions>
+        </dxprg:PropertyGridControl>
+    </Grid>
+</Window>
